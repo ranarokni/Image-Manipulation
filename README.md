@@ -1,133 +1,158 @@
-# Linear-Algebra-Course
-Image Manipulation Project
-This project provides a Python class Image for various image manipulation tasks using OpenCV and NumPy. The class includes methods for loading, saving, displaying, resizing, rotating, zooming, applying filters, detecting edges, blending images, and adding logos or text. This README will guide you through the usage of the class and its methods.
+# Linear Algebra – Image Manipulation Project
 
-Table of Contents
-Installation
-Usage
-Initialization
-Saving and Displaying Images
-Resizing and Zooming
-Rotating
-Edge Detection and Blurring
-Color Manipulation
-Adjusting Brightness and Contrast
-Blending Images
-Adding Logos and Text
-Examples
-Contributing
-License
-Installation
+This project provides a Python class **`Image`** for performing a wide range of image manipulation tasks using **OpenCV** and **NumPy**.  
+With this class, you can easily load, save, display, resize, rotate, zoom, filter, detect edges, blend images, and add logos or text.  
+
+This README explains installation, usage, and the functionality of each method.  
+
+---
+
+## Table of Contents
+- [Linear Algebra – Image Manipulation Project](#linear-algebra--image-manipulation-project)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Usage](#usage)
+      - [Initialization](#initialization)
+      - [Saving and Displaying Images](#saving-and-displaying-images)
+      - [Resizing and Zooming](#resizing-and-zooming)
+      - [Rotating](#rotating)
+      - [Edge Detection and Blurring](#edge-detection-and-blurring)
+      - [Color Manipulation](#color-manipulation)
+      - [Adjusting Brightness and Contrast](#adjusting-brightness-and-contrast)
+      - [Blending Images](#blending-images)
+      - [Adding Logos and Text](#adding-logos-and-text)
+  - [Examples](#examples)
+
+---
+
+## Installation
+
 Clone the repository:
 
-bash
-Copy code
+```bash
 git clone https://github.com/yourusername/image-manipulation-project.git
+```
+
 Navigate to the project directory:
 
-bash
-Copy code
+```bash
 cd image-manipulation-project
+```
+Install dependencies:
+```bash
 Install the required dependencies:
+```
+## Usage
 
-bash
-Copy code
-pip install -r requirements.txt
-Usage
-Initialization
-python
-Copy code
+#### Initialization
+
+```bash
 from image_manipulation import Image
 
-# Initialize an Image object with the path to your image file
-img = Image('path/to/your/image.png')
-Saving and Displaying Images
-python
-Copy code
-# Save the image
-img.save('output_image.png')
+# Create an Image object from a file
+img = Image("path/to/your/image.png")
+```
 
-# Display the image
-img.display('Sample Image')
-Resizing and Zooming
-python
-Copy code
-# Resize the image by a factor of 0.5
-img.resize(0.5)
+#### Saving and Displaying Images
 
-# Zoom the image by a factor of 2 around the center
-img.zoomAt(2.0)
-Rotating
-python
-Copy code
-# Rotate the image by 90 degrees
-img.rotate(90)
-Edge Detection and Blurring
-python
-Copy code
-# Perform edge detection with default thresholds
+save(path) → saves the current image to the specified path.
+
+display(window_name) → opens the image in a window for viewing.
+```bash
+img.save("output.png")
+img.display("Sample Image")
+```
+
+#### Resizing and Zooming
+
+resize(factor) → scales the image by a given factor (e.g., 0.5 for half size).
+
+zoomAt(factor) → zooms into the image around its center.
+
+```bash
+img.resize(0.5)   # Shrink
+img.zoomAt(2.0)   # Zoom in
+```
+
+#### Rotating
+
+rotate(angle) → rotates the image by a given angle in degrees.
+```bash
+img.rotate(90)  # Rotate 90 degrees clockwise
+```
+
+#### Edge Detection and Blurring
+
+edge_detection() → applies Canny edge detection to highlight object boundaries.
+
+blur_by_averaging() → smooths the image using an averaging filter.
+
+stronger_blur(rate) → applies a stronger blur effect with adjustable kernel size.
+
+```bash
 img.edge_detection()
-
-# Apply average blurring
 img.blur_by_averaging()
-
-# Apply stronger blur with a specified rate
 img.stronger_blur(15)
-Color Manipulation
-python
-Copy code
-# Invert the colors of the image
+```
+
+#### Color Manipulation
+
+invert_color() → inverts all pixel colors (like a photo negative).
+
+gray_scale() → converts the image to grayscale.
+
+```bash
 img.invert_color()
-
-# Convert the image to grayscale
 img.gray_scale()
-Adjusting Brightness and Contrast
-python
-Copy code
-# Adjust the brightness of the image
+```
+
+
+#### Adjusting Brightness and Contrast
+
+adjust_brightness(beta) → increases/decreases brightness by shifting pixel values.
+
+adjust_contrast(alpha) → enhances or reduces contrast by scaling pixel intensity.
+
+```bash
 img.adjust_brightness(beta=50)
-
-# Adjust the contrast of the image
 img.adjust_contrast(alpha=2.0)
-Blending Images
-python
-Copy code
-# Blend the image with another image
-img.blend_image('path/to/another/image.png', blend_rate1=0.7, blend_rate2=0.3)
-Adding Logos and Text
-python
-Copy code
-# Add a logo to the image
-img.add_logo('path/to/logo.png')
+```
 
-# Add text to the image
-img.add_text('Sample Text', position=(50, 50), font_size=2, color=(255, 0, 0), thickness=2)
-Examples
-Here are a few examples of how to use the Image class for various image manipulations:
 
-python
-Copy code
-# Example 1: Resize and save an image
-img = Image('test1.png')
+#### Blending Images
+
+blend_image(path, blend_rate1, blend_rate2) → merges two images together with custom weights.
+
+```bash
+img.blend_image("path/to/another.png", 0.7, 0.3)
+```
+
+
+#### Adding Logos and Text
+
+add_logo(path) → overlays a logo onto the image.
+
+add_text(text, position, font_size, color, thickness) → writes custom text on the image.
+
+```bash
+img.add_logo("logo.png")
+img.add_text("Hello World", position=(50, 50), font_size=2, color=(255,0,0), thickness=2)
+```
+
+## Examples 
+```bash
+# Example 1: Resize and save
+img = Image("test1.png")
 img.resize(0.5)
-img.save('resized_image.png')
+img.save("resized.png")
 
-# Example 2: Rotate and display an image
-img = Image('test1.png')
+# Example 2: Rotate and display
+img = Image("test1.png")
 img.rotate(45)
-img.display('Rotated Image')
+img.display("Rotated Image")
 
-# Example 3: Detect edges and save the image
-img = Image('test1.png')
+# Example 3: Edge detection and save
+img = Image("test1.png")
 img.edge_detection()
-img.save('edges_image.png')
-Contributing
-Contributions are welcome! Please feel free to submit a Pull Request or open an issue for any improvements, bug fixes, or feature requests.
-
-Fork the repository
-Create your feature branch (git checkout -b feature/my-feature)
-Commit your changes (git commit -am 'Add some feature')
-Push to the branch (git push origin feature/my-feature)
-Create a new Pull Request
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+img.save("edges.png")
+```
