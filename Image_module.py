@@ -12,8 +12,7 @@ class Image:
         Parameters:
             file_path (str): The path to the input image file.
         """
-        
-        self.image = cv2.imread('test1.png')
+        self.image = cv2.imread(file_path)
         self.image_height, self.image_width, self.image_channel = self.image.shape
         self.image_b, self.image_g, self.image_r = cv2.split(self.image )
         
